@@ -26,7 +26,7 @@ class Game{//criando classe de Jogo
     @Relationship(inverse: \SubGenre.games) var subgenre: SubGenre
     
     //inicializando as variaveis
-    init(id: Int = Int.random(in: 0...100), name: String, star: Int, numberRatings: Int, cover: Data?, subgenre: SubGenre){
+    init(id: Int = Int.random(in: 0...100), name: String, star: Int, subgenre: SubGenre, cover: Data?, numberRatings: Int){
         
         self.id = id
         self.name = name
