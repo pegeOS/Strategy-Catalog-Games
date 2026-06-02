@@ -35,6 +35,10 @@ struct GameCoverView: View {
 
         }
         .aspectRatio(1, contentMode: .fit)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
+}
+
+#Preview{
+    GameCoverView(cover: UIImage(resource: .sla).pngData())
 }
