@@ -21,14 +21,18 @@ class Game{//criando classe de Jogo
     var id: Int
     var name: String
     var star: Int
+    var cover: Data?
+    var numberRatings: Int
     @Relationship(inverse: \SubGenre.games) var subgenre: SubGenre
     
     //inicializando as variaveis
-    init(id: Int = Int.random(in: 0...100), name: String, star: Int, subgenre: SubGenre){
+    init(id: Int = Int.random(in: 0...100), name: String, star: Int, subgenre: SubGenre, cover: Data?, numberRatings: Int){
         
         self.id = id
         self.name = name
         self.star = star
+        self.numberRatings = numberRatings
+        self.cover = cover
         self.subgenre = subgenre
     }
 }
