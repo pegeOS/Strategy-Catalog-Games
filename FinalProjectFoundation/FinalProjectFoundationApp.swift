@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData // Importe SwiftData para usar o ModelContainer
 
 @main
 struct FinalProjectFoundationApp: App {
@@ -13,5 +14,10 @@ struct FinalProjectFoundationApp: App {
         WindowGroup {
             MainView()
         }
+        // Este modificador configura o SwiftData para o seu aplicativo.
+        // Ele informa ao sistema que você deseja gerenciar os modelos Game e SubGenre.
+        // O try! indica que esperamos que a criação do contêiner sempre funcione,
+        // mas em um aplicativo real, você trataria erros aqui.
+        .modelContainer(for: [Game.self, SubGenre.self])
     }
 }
