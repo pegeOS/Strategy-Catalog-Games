@@ -64,6 +64,6 @@ struct GameRowView: View {
 }
 
 
-#Preview{
-    GameRowView(game: Game(id: 1, name: "Balatro", star:2, numberRatings: 1902, cover:UIImage(resource: .sla).pngData(), subgenre: SubGenre(id:1,name:"Roguelike")))
-}
+//#Preview{
+//    GameRowView(game: Game(id: 1, name: "Balatro", star:2, subgenre: 1902, cover:UIImage(resource: .sla).pngData(), numberRatings: SubGenre(id:1,name:"Roguelike")))
+//}
