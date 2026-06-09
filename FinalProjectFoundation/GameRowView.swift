@@ -13,13 +13,19 @@ struct GameRowView: View {
     var contador : Int = 0
     
     var body: some View {
-        HStack(alignment: .top){
+        
+        //capa
+        HStack(alignment: .center){
             GameCoverView(cover: UIImage(resource: .sla).pngData())
-                .frame(width:130, height:130)
-            
-            VStack(alignment: .leading){
-                Text(game.name).font(.system(size:32))
-                Spacer()
+            //nome
+            VStack(alignment: .leading, spacing: 0){
+                
+                Text(game.name)
+                    .font(.system(size:32))
+                    .bold() // Texto do nome em negrito
+                    .padding(.bottom)
+//                Spacer()
+                
                 
                 // - - - - ESTRELAS - - - -
                 
@@ -28,42 +34,70 @@ struct GameRowView: View {
                     ForEach(0..<game.star){ star in
                         ZStack {
                             Image(systemName: "star.fill")
-                                .foregroundStyle(.yellow)
+                                .foregroundStyle(.yellow) // Estrela preenchida amarela
                             Image(systemName: "star")
-                                .foregroundStyle(.black)
+                                .foregroundStyle(.black) // Borda da estrela preenchida branca
                         }
                     }
                     ForEach(0..<5){ index in
                         if(index >= game.star){
                             Image(systemName: "star")
+                                .foregroundStyle(.black) // Estrela vazia branca
                         }
                     }
                 }
                 // - - - - - - - - - - -
                 
-                Spacer()
+                //nº de avaliacoes e subgenero
                 HStack{
                     Text("( " + String(game.numberRatings) + " Avaliações )")
                     
                     Button(action:{print("Botao clicado")}){
                         Text(game.subgenre.name)
-                            .padding(4)
+                            .padding(6)
                     }
-                    .background(Color.purple.opacity(0.6))
-                    .foregroundColor(.white)
-                    .cornerRadius(25)
+                    .background {
+                        ZStack {
+                            
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(
+                                    .purple,
+                                    style: StrokeStyle(
+                                        lineWidth: 2,
+                                        dash: [4, 3]
+                                    )
+                                )
+    
+                        }
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 25))
+                    
+                    .foregroundColor(.white) // Garante que o texto do botão é branco
+//                    .cornerRadius(25)
                     .frame(maxHeight: .infinity, alignment: .center)
                 }
-                Spacer()
             }
+            .foregroundColor(.white) // Aplica a cor branca a todos os textos dentro deste VStack
             .fixedSize(horizontal: false, vertical: true)
+            
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .aspectRatio(1/0.25, contentMode: .fit)
+        .padding(7)
+        .background {
+            ZStack {
+                
+                RoundedRectangle(cornerRadius: 25)
+                    .stroke(
+                        .roxinho
+                    )
+                
+            }
+        }
+        .padding(.horizontal)
     }
-//      .frame(maxWidth: .infinity, alignment: .leading)
-//      .frame(height: 100)
 }
 
-
-//#Preview{
-//    GameRowView(game: Game(id: 1, name: "Balatro", star:2, subgenre: 1902, cover:UIImage(resource: .sla).pngData(), numberRatings: SubGenre(id:1,name:"Roguelike")))
-//}
+#Preview{
+    GameRowView(game: Game(id: 1, name: "Balatro", star:2, cover:UIImage(resource: .sla).pngData(), numberRatings: 1902, subgenre: SubGenre(id:1,name:"Roguelike")))
+}
