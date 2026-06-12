@@ -10,7 +10,7 @@ import SwiftDataSQLite
 
 struct GameListView: View{
     
-    @Query var games: [Game]
+    @Query var games: [Jogo]
     
     var body: some View {
         
@@ -52,7 +52,7 @@ struct GameListView: View{
 #Preview {
     GameListView()
         .modelContainer( // ✅
-            for: [Game.self, SubGenre.self],
+            for: [Jogo.self, Comentarios.self, CriadoresJogos.self],
             inMemory: true,
             sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
         )
