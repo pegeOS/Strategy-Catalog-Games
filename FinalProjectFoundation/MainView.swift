@@ -12,18 +12,8 @@ struct MainView: View {
     var body: some View {
         TabView {
             // Aba Explorar
-            NavigationStack {
-                VStack{
-                    GameRowView(game: Game(id: 1, name: "Balatro", star:5, cover:UIImage(resource: .sla).pngData(), numberRatings: 1902, subgenre: SubGenre(id:1,name:"Roguelike")))
-                    GameRowView(game: Game(id: 1, name: "Balatro", star:4, cover:UIImage(resource: .sla).pngData(), numberRatings: 1902, subgenre: SubGenre(id:1,name:"Roguelike")))
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(LinearGradient(
-                    colors: [.roxao, .preto],
-                    startPoint: .top,
-                    endPoint: .bottom))
-                .navigationTitle("Explorar")
-                .toolbarColorScheme(.dark, for: .navigationBar)
+            NavigationStack{
+                GameListView()
             }
             .tabItem {
                 Label("Explorar", systemImage: "star.fill")

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameRowView: View {
     
-    var game : Game
+    var game : Jogo
     var contador : Int = 0
     
     var body: some View {
@@ -20,7 +20,7 @@ struct GameRowView: View {
             //nome
             VStack(alignment: .leading, spacing: 0){
                 
-                Text(game.name)
+                Text(game.nome)
                     .font(.system(size:32))
                     .bold() // Texto do nome em negrito
                     .padding(.bottom)
@@ -31,7 +31,7 @@ struct GameRowView: View {
                 
                 HStack{
                     
-                    ForEach(0..<game.star){ star in
+                    ForEach(0..<game.n_estrelas){ star in
                         ZStack {
                             Image(systemName: "star.fill")
                                 .foregroundStyle(.yellow) // Estrela preenchida amarela
@@ -40,7 +40,7 @@ struct GameRowView: View {
                         }
                     }
                     ForEach(0..<5){ index in
-                        if(index >= game.star){
+                        if(index >= game.n_estrelas){
                             Image(systemName: "star")
                                 .foregroundStyle(.black) // Estrela vazia branca
                         }
@@ -50,10 +50,10 @@ struct GameRowView: View {
                 
                 //nº de avaliacoes e subgenero
                 HStack{
-                    Text("( " + String(game.numberRatings) + " Avaliações )")
+                    Text("( " + String(game.n_estrelas) + " Avaliações )")
                     
                     Button(action:{print("Botao clicado")}){
-                        Text(game.subgenre.name)
+                        Text(game.subgen ?? "")
                             .padding(6)
                     }
                     .background {
@@ -99,5 +99,14 @@ struct GameRowView: View {
 }
 
 #Preview{
-    GameRowView(game: Game(id: 1, name: "Balatro", star:2, cover:UIImage(resource: .sla).pngData(), numberRatings: 1902, subgenre: SubGenre(id:1,name:"Roguelike")))
+    GameRowView(
+        game: Jogo(
+            nome: "Balatro",
+            descricao: "",
+            n_estrelas: 2,
+            n_avaliacoes: 10,
+            data_lancamento: "10/01/2024",
+            capa: UIImage(resource: .sla).pngData()!
+        )
+    )
 }

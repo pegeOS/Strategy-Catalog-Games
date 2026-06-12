@@ -2,54 +2,72 @@
 //  FinalProjectFoundation
 //  Created by Found on 02/06/26.
 
-
-
-
-
-
 import Foundation
 import SwiftData
 import SwiftDataSQLite
 
-@SQLiteTable("games")
-//fazendo o @Model para transformar uma classe comum do swift em um modelo de dados gerenciado pelo SwiftData
+@SQLiteTable("Jogo")
 @Model
-class Game{//criando classe de Jogo
-
+class Jogo {
+    @Attribute(.unique) var id: Int
+    var nome: String
+    var descricao: String
+    var n_estrelas: Int
+    var n_avaliacoes: Int
+    var data_lancamento: String
+    var capa: Data
+    var subgen: String?
     
-    //id, nome, numero de estrelas e subgenero, que sera vinculado a variavel "games" da classe SubGenre
-    var id: Int
-    var name: String
-    var star: Int
-    var cover: Data?
-    var numberRatings: Int
-    @Relationship(inverse: \SubGenre.games) var subgenre: SubGenre
+    // Relacionamento um-para-muitos com Comentarios
+    @Relationship var comentarios: [Comentarios] = []
     
-    //inicializando as variaveis
-    init(id: Int = Int.random(in: 0...100), name: String, star: Int, cover: Data?, numberRatings: Int, subgenre: SubGenre){
-        
+    // Relacionamento um-para-muitos com CriadoresJogos (Atributo multivalorado)
+    @Relationship var criadores: [CriadoresJogos] = []
+    
+    init(id: Int = Int.random(in: 1...100000), nome: String, descricao: String, n_estrelas: Int, n_avaliacoes: Int, data_lancamento: String, capa: Data, subgen: String? = nil) {
         self.id = id
-        self.name = name
-        self.star = star
-        self.numberRatings = numberRatings
-        self.cover = cover
-        self.subgenre = subgenre
+        self.nome = nome
+        self.descricao = descricao
+        self.n_estrelas = n_estrelas
+        self.n_avaliacoes = n_avaliacoes
+        self.data_lancamento = data_lancamento
+        self.capa = capa
+        self.subgen = subgen
     }
 }
 
-@SQLiteTable("subgenres")
+@SQLiteTable("Comentarios")
 @Model
-class SubGenre{ // criando classe de subgenero de jogo
+class Comentarios {
+    @Attribute(.unique) var id: String
+    var n_estrelas: Int
+    var texto_critica: String
+    var nome_avaliador: String
     
-    //id, nome e array de jogos que nao precisa ser inicializado pois está vinculado a variavel "subgenre" da classe Game
-    var id: Int
-    var name: String
-    @Relationship var games: [Game] = []
+    // Relacionamento inverso com Jogo (id_jogo)
+    @Relationship(inverse: \Jogo.comentarios)
+    var jogo: Jogo
     
-    //inicializando as variaveis
-    init(id: Int = Int.random(in: 0...100), name: String){
-        
+    init(id: String = UUID().uuidString, n_estrelas: Int, texto_critica: String, nome_avaliador: String, jogo: Jogo) {
         self.id = id
-        self.name = name
+        self.n_estrelas = n_estrelas
+        self.texto_critica = texto_critica
+        self.nome_avaliador = nome_avaliador
+        self.jogo = jogo
+    }
+}
+
+@SQLiteTable("CriadoresJogos")
+@Model
+class CriadoresJogos {
+    var criadores: String
+    
+    // Relacionamento inverso com Jogo (ind_jogo)
+    @Relationship(inverse: \Jogo.criadores)
+    var jogo: Jogo
+    
+    init(criadores: String, jogo: Jogo) {
+        self.criadores = criadores
+        self.jogo = jogo
     }
 }
