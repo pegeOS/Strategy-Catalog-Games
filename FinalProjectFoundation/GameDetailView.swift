@@ -12,7 +12,7 @@ import SwiftDataSQLite
 
 struct GameDetailView: View{
     
-    var game: Game
+    var game: Jogo
     
     var body: some View{
         
@@ -27,7 +27,7 @@ struct GameDetailView: View{
                 colors: [.roxao, .preto],
                 startPoint: .top,
                 endPoint: .bottom))
-            .navigationTitle("Explorar")
+            .navigationTitle("Escolha seu subgênero")
             .navigationSubtitle("Todos os álbuns da sua biblioteca")
             .toolbarColorScheme(.dark, for: .navigationBar)
         }

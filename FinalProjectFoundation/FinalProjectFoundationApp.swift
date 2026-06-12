@@ -18,6 +18,6 @@ struct FinalProjectFoundationApp: App {
         // Ele informa ao sistema que você deseja gerenciar os modelos Game e SubGenre.
         // O try! indica que esperamos que a criação do contêiner sempre funcione,
         // mas em um aplicativo real, você trataria erros aqui.
-        .modelContainer(for: [Game.self, SubGenre.self])
+        .modelContainer(for: [Jogo.self, Comentarios.self])
     }
 }
