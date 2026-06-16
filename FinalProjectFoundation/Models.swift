@@ -23,7 +23,17 @@ class Jogo {
     // Relacionamento um-para-muitos com Comentarios
     @Relationship var comentarios: [Comentarios] = []
     
-    init(id: Int = Int.random(in: 1...100000), nome: String, descricao: String, n_estrelas: Int, n_avaliacoes: Int, criadores: [String], data_lancamento: String, capa: Data, subgen: String? = nil) {
+    init(
+        id: Int = Int.random(in: 1...100000),
+        nome: String,
+        descricao: String,
+        n_estrelas: Int,
+        n_avaliacoes: Int,
+        criadores: [String],
+        data_lancamento: String,
+        capa: Data,
+        subgen: String? = nil
+    ) {
         self.id = id
         self.nome = nome
         self.descricao = descricao
@@ -46,6 +56,7 @@ class Comentarios {
     var nome_avaliador: String
     
     // Relacionamento inverso com Jogo (id_jogo)
+    @SQLiteColumn("id_jogo")
     @Relationship(inverse: \Jogo.comentarios)
     var jogo: Jogo
     
