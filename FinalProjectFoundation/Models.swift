@@ -15,6 +15,7 @@ class Jogo {
     var descricao: String
     var n_estrelas: Int
     var n_avaliacoes: Int
+    var criadores: [String]
     var data_lancamento: String
     var capa: Data
     var subgen: String?
@@ -22,15 +23,13 @@ class Jogo {
     // Relacionamento um-para-muitos com Comentarios
     @Relationship var comentarios: [Comentarios] = []
     
-    // Relacionamento um-para-muitos com CriadoresJogos (Atributo multivalorado)
-    @Relationship var criadores: [CriadoresJogos] = []
-    
-    init(id: Int = Int.random(in: 1...100000), nome: String, descricao: String, n_estrelas: Int, n_avaliacoes: Int, data_lancamento: String, capa: Data, subgen: String? = nil) {
+    init(id: Int = Int.random(in: 1...100000), nome: String, descricao: String, n_estrelas: Int, n_avaliacoes: Int, criadores: [String], data_lancamento: String, capa: Data, subgen: String? = nil) {
         self.id = id
         self.nome = nome
         self.descricao = descricao
         self.n_estrelas = n_estrelas
         self.n_avaliacoes = n_avaliacoes
+        self.criadores = criadores
         self.data_lancamento = data_lancamento
         self.capa = capa
         self.subgen = subgen
@@ -55,23 +54,6 @@ class Comentarios {
         self.n_estrelas = n_estrelas
         self.texto_critica = texto_critica
         self.nome_avaliador = nome_avaliador
-        self.jogo = jogo
-    }
-}
-
-@SQLiteTable("CriadoresJogos")
-@Model
-class CriadoresJogos {
-    var id: Int
-    var criadores: String
-    
-    // Relacionamento inverso com Jogo (ind_jogo)
-    @Relationship(inverse: \Jogo.criadores)
-    var jogo: Jogo
-    
-    init(id: Int, criadores: String, jogo: Jogo) {
-        self.id = id
-        self.criadores = criadores
         self.jogo = jogo
     }
 }

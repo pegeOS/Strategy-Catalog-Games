@@ -25,7 +25,7 @@ struct GameListView: View{
                         } label: {
                             GameRowView(game: jogo)
                         }
-                        
+                        .listRowSeparator(.hidden)
                         .padding(8)
                         .background {
                             RoundedRectangle(cornerRadius: 8)
@@ -50,7 +50,7 @@ struct GameListView: View{
 #Preview{
     GameListView()
         .modelContainer( // ✅
-            for: [Jogo.self, Comentarios.self, CriadoresJogos.self],
+            for: [Jogo.self, Comentarios.self],
             inMemory: true,
             sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
         )
