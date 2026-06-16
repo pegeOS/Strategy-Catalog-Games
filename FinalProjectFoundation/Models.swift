@@ -9,7 +9,8 @@ import SwiftDataSQLite
 @SQLiteTable("Jogo")
 @Model
 class Jogo {
-    @Attribute(.unique) var id: Int
+    @SQLiteColumn("ID")
+    var id: Int
     var nome: String
     var descricao: String
     var n_estrelas: Int
@@ -39,7 +40,8 @@ class Jogo {
 @SQLiteTable("Comentarios")
 @Model
 class Comentarios {
-    @Attribute(.unique) var id: String
+    @SQLiteColumn("id_comentarios")
+    var id: String
     var n_estrelas: Int
     var texto_critica: String
     var nome_avaliador: String
@@ -60,13 +62,15 @@ class Comentarios {
 @SQLiteTable("CriadoresJogos")
 @Model
 class CriadoresJogos {
+    var id: Int
     var criadores: String
     
     // Relacionamento inverso com Jogo (ind_jogo)
     @Relationship(inverse: \Jogo.criadores)
     var jogo: Jogo
     
-    init(criadores: String, jogo: Jogo) {
+    init(id: Int, criadores: String, jogo: Jogo) {
+        self.id = id
         self.criadores = criadores
         self.jogo = jogo
     }

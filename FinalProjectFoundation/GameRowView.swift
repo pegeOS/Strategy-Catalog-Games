@@ -16,14 +16,14 @@ struct GameRowView: View {
         
         //capa
         HStack(alignment: .center){
-            GameCoverView(cover: UIImage(resource: .sla).pngData())
+            GameCoverView(cover: game.capa)
+                .frame(width: 100, height: 100)
             //nome
             VStack(alignment: .leading, spacing: 0){
                 
                 Text(game.nome)
-                    .font(.system(size:32))
+                    .font(.title2)
                     .bold() // Texto do nome em negrito
-                    .padding(.bottom)
 //                Spacer()
                 
                 
@@ -49,51 +49,40 @@ struct GameRowView: View {
                 // - - - - - - - - - - -
                 
                 //nº de avaliacoes e subgenero
-                HStack{
-                    Text("( " + String(game.n_estrelas) + " Avaliações )")
-                    
-                    Button(action:{print("Botao clicado")}){
-                        Text(game.subgen ?? "")
-                            .padding(6)
-                    }
-                    .background {
-                        ZStack {
-                            
-                            RoundedRectangle(cornerRadius: 25)
-                                .stroke(
-                                    .purple,
-                                    style: StrokeStyle(
-                                        lineWidth: 2,
-                                        dash: [4, 3]
+                VStack{
+                    Text("( " + String(game.n_estrelas) + " Avaliações )").frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    let subgeneros = (game.subgen ?? "").components(separatedBy: ",")
+                    HStack {
+                        ForEach(subgeneros, id: \.self) { subgenero in
+                            Button(action:{print("Botao clicado")}){
+                                Text(subgenero)
+                                    .font(.callout)
+                                    .padding(5)
+                                    .fixedSize()
+                            }
+                            .background {
+                                Capsule()
+                                    .stroke(
+                                        .purple,
+                                        style: StrokeStyle(
+                                            lineWidth: 2,
+                                            dash: [4, 3]
+                                        )
                                     )
-                                )
-    
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxHeight: .infinity, alignment: .center)
                         }
+                        Spacer()
                     }
-                    .clipShape(RoundedRectangle(cornerRadius: 25))
-                    
-                    .foregroundColor(.white) // Garante que o texto do botão é branco
-//                    .cornerRadius(25)
-                    .frame(maxHeight: .infinity, alignment: .center)
                 }
             }
             .foregroundColor(.white) // Aplica a cor branca a todos os textos dentro deste VStack
             .fixedSize(horizontal: false, vertical: true)
-            
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .aspectRatio(1/0.25, contentMode: .fit)
-        .padding(7)
-        .background {
-            ZStack {
-                
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(
-                        .roxinho
-                    )
-                
-            }
-        }
         .padding(.horizontal)
     }
 }

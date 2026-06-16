@@ -27,7 +27,7 @@ struct GameDetailView: View{
                 colors: [.roxao, .preto],
                 startPoint: .top,
                 endPoint: .bottom))
-            .navigationTitle("Escolha seu subgênero")
+            .navigationTitle("Jogo")
             .navigationSubtitle("Todos os álbuns da sua biblioteca")
             .toolbarColorScheme(.dark, for: .navigationBar)
         }

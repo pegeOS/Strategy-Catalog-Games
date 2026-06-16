@@ -25,31 +25,29 @@ struct GameListView: View{
                         } label: {
                             GameRowView(game: jogo)
                         }
-                            
+                        
                         .padding(8)
                         .background {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.secondary.opacity(0.3))
                         }
-                        .listRowSeparator(.hidden)
+                        .listRowBackground(EmptyView())
                     }
-                    
                 }
                 .listStyle(.plain)
                 .navigationTitle("Explorar")
-                .navigationSubtitle("Todos os álbuns da sua biblioteca")
             }
-            .background(LinearGradient(
-                colors: [.roxao, .preto],
-                startPoint: .top,
-                endPoint: .bottom))
-            .toolbarColorScheme(.dark, for: .navigationBar)
+//            .background(LinearGradient(
+//                colors: [.roxao, .preto],
+//                startPoint: .top,
+//                endPoint: .bottom)
+//            )
         }
     }
 }
 
 
-#Preview {
+#Preview{
     GameListView()
         .modelContainer( // ✅
             for: [Jogo.self, Comentarios.self, CriadoresJogos.self],
