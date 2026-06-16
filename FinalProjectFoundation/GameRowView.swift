@@ -29,7 +29,7 @@ struct GameRowView: View {
                 
                 // - - - - ESTRELAS - - - -
                 
-                HStack{
+                HStack(spacing: 1){
                     
                     ForEach(0..<game.n_estrelas){ star in
                         ZStack {
@@ -50,7 +50,7 @@ struct GameRowView: View {
                 
                 //nº de avaliacoes e subgenero
                 VStack{
-                    Text("( " + String(game.n_estrelas) + " Avaliações )").frame(maxWidth: .infinity, alignment: .leading)
+                    Text("( " + String(game.n_avaliacoes) + " Avaliações )").frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
                     let subgeneros = (game.subgen ?? "").components(separatedBy: ",")
                     HStack {

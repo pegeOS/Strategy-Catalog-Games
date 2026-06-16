@@ -60,7 +60,7 @@ struct MainView: View {
 
 #Preview {
     MainView()
-        .modelContainer( // ✅
+        .modelContainer( // h✅
             for: [Jogo.self, Comentarios.self],
             inMemory: true,
             sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!

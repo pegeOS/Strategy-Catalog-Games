@@ -20,9 +20,7 @@ struct GameListView: View{
                 
                 List{
                     ForEach(games){ jogo in
-                        NavigationLink{
-                            GameDetailView(game: jogo)
-                        } label: {
+                        NavigationLink{GameDetailView( game: jogo) } label: {
                             GameRowView(game: jogo)
                         }
                         .listRowSeparator(.hidden)
