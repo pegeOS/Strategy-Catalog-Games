@@ -15,7 +15,7 @@ struct FinalProjectFoundationApp: App {
         WindowGroup {
             MainView()
                 .modelContainer( // ✅
-                    for: [Jogo.self, Comentarios.self, CriadoresJogos.self],
+                    for: [Jogo.self, Comentarios.self],
                     inMemory: true,
                     sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
                 )

@@ -33,10 +33,9 @@ struct GameDetailView: View {
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                             } else {
-                                ForEach(game.criadores) { criador in
-                                    Text(criador.criadores)
-                                        .font(.subheadline)
-                                        .foregroundColor(.white)
+                                Text("Meus criadores: \(game.criadores.formatted(.list(type: .and, width: .standard)))")
+                                    .font(.subheadline)
+                                    .foregroundColor(.white)
                                 }
                             }
                             Text(game.data_lancamento)
@@ -60,10 +59,10 @@ struct GameDetailView: View {
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
-}
+
 
  #Preview {
- GameDetailView(game: Jogo(nome: "Balatro", descricao: "Jogo massa", n_estrelas: 5, n_avaliacoes: 1900, data_lancamento: "23/11/2009", capa: UIImage(resource: .sla).pngData()!))
+ GameDetailView(game: Jogo(nome: "Balatro", descricao: "Jogo massa", n_estrelas: 5, n_avaliacoes: 1900, criadores: ["Pedro Gabriel", "Pedro Hélios"], data_lancamento: "23/11/2009", capa: UIImage(resource: .sla).pngData()!))
  }
 /*
  //#Preview {
