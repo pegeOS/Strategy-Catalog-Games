@@ -18,11 +18,7 @@ struct GameCoverView: View {
     var body: some View {
         //junta em um grupo
         ZStack {
-            Color.gray
-            Image(systemName: "photo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
+            Color.black
             
             // verifica se a variavel cover nao é nula, transforma a variavel cover em um a imagem nativa ( UIImage)
             if let cover = cover, let uiImage = UIImage(data: cover){

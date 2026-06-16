@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData // Adicione esta linha
+import SwiftDataSQLite
 
 struct MainView: View {
     var body: some View {
@@ -14,6 +15,11 @@ struct MainView: View {
             // Aba Explorar
             NavigationStack{
                 GameListView()
+                .background(LinearGradient(
+                    colors: [.roxao, .preto],
+                    startPoint: .top,
+                    endPoint: .bottom)
+                )
             }
             .tabItem {
                 Label("Explorar", systemImage: "star.fill")
@@ -22,7 +28,12 @@ struct MainView: View {
             // MARK: - Aba Subgêneros
 
             NavigationStack {
-                //SubGenreView()
+                SubgenreView()
+                .background(LinearGradient(
+                    colors: [.roxao, .preto],
+                    startPoint: .top,
+                    endPoint: .bottom)
+                )
             }
             .tabItem {
                 Label("Subgêneros", systemImage: "gamecontroller.fill")
@@ -31,18 +42,29 @@ struct MainView: View {
             // MARK: - Aba Pesquisa
 
             NavigationStack {
-                //SearchView()
+                SearchView()
+                .background(LinearGradient(
+                    colors: [.roxao, .preto],
+                    startPoint: .top,
+                    endPoint: .bottom)
+                )
             }
             .tabItem {
                 Label("Pesquisa", systemImage: "magnifyingglass")
             }
         }
+        
         .tint(.purple) // Define a cor do ícone e texto da aba selecionada
     }
 }
 
 #Preview {
     MainView()
+        .modelContainer( // ✅
+            for: [Jogo.self, Comentarios.self, CriadoresJogos.self],
+            inMemory: true,
+            sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
+        )
         // Para o Preview da MainView funcionar com as novas abas, ela também precisa
         // de um ModelContainer e alguns dados de teste para a SubGenreView.
 //        .modelContainer(for: [Game.self, SubGenre.self], inMemory: true)
