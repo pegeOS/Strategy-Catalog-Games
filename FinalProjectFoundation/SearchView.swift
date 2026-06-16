@@ -26,7 +26,7 @@ struct SearchView: View{
             colors: [.roxao, .preto],
             startPoint: .top,
             endPoint: .bottom))
-        .navigationTitle("Escolha seu subgênero")
+        .navigationTitle("Busca")
         .navigationViewStyle(.columns)
         .toolbarColorScheme(.dark, for: .navigationBar)
     }
