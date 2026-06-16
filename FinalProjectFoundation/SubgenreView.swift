@@ -27,7 +27,7 @@ struct SubgenreView: View{
                 colors: [.roxao, .preto],
                 startPoint: .top,
                 endPoint: .bottom))
-            .navigationTitle("Escolha seu subgênero")
+            .navigationTitle("Subgênero")
             .navigationViewStyle(.columns)
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
