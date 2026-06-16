@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData // Importe SwiftData para usar o ModelContainer
 import SwiftDataSQLite
-
+//cavalo
 @main
 struct FinalProjectFoundationApp: App {
     var body: some Scene {
