@@ -10,7 +10,7 @@ import SwiftDataSQLite
 
 struct GameListView: View{
     
-    @Query var games: [Jogo]
+    @Query(sort: \Jogo.id) var games: [Jogo]
     
     var body: some View {
         
@@ -20,7 +20,7 @@ struct GameListView: View{
                 
                 List{
                     ForEach(games){ jogo in
-                        NavigationLink{GameDetailView( game: jogo) } label: {
+                        NavigationLink{GameDetailView(game: jogo) } label: {
                             GameRowView(game: jogo)
                         }
                         .listRowSeparator(.hidden)
@@ -29,9 +29,11 @@ struct GameListView: View{
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.secondary.opacity(0.3))
                         }
-                        .listRowBackground(EmptyView())
                     }
+                    .listRowBackground(EmptyView())
                 }
+                .listRowSpacing(-10)
+                .padding(1)
                 .listStyle(.plain)
                 .navigationTitle("Explorar")
             }
