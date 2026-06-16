@@ -94,6 +94,7 @@ struct GameRowView: View {
             descricao: "",
             n_estrelas: 2,
             n_avaliacoes: 10,
+            criadores: ["Pedro Gabriel", "Pedro Hélios"],
             data_lancamento: "10/01/2024",
             capa: UIImage(resource: .sla).pngData()!
         )
