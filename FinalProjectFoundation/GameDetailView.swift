@@ -10,35 +10,68 @@ import SwiftUI
 import SwiftData
 import SwiftDataSQLite
 
-struct GameDetailView: View{
+struct GameDetailView: View {
     
     var game: Jogo
     
-    var body: some View{
+    var body: some View {
         
         NavigationStack {
             
-            VStack{
-                    
+            VStack() {
+                VStack {
+                    HStack(alignment: .top, spacing: 20 ) {
+                        
+                        GameCoverView(cover: game.capa)
+                            .frame(width: 120, height: 120, alignment: .leading)
+                        
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            
+                            if game.criadores.isEmpty {
+                                Text("Nenhum criador registrado")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            } else {
+                                ForEach(game.criadores) { criador in
+                                    Text(criador.criadores)
+                                        .font(.subheadline)
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            Text(game.data_lancamento)
+                                .font(.subheadline)
+                                .foregroundColor(.white)
+                            
+                        }
+                        Spacer()
+                        
+                    }
+                    .padding()
+                    Spacer()
                 }
             }
-            .listStyle(.plain)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(LinearGradient(
                 colors: [.roxao, .preto],
                 startPoint: .top,
                 endPoint: .bottom))
-            .navigationTitle("Jogo")
-            .navigationSubtitle("Todos os álbuns da sua biblioteca")
+            .navigationTitle(game.nome)
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
+}
 
-
-//#Preview {
-//    GameDetailView()
-//        .modelContainer( // ✅
-//            for: [Game.self, SubGenre.self],
-//            inMemory: true,
-//            sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
-//        )
-//}
+ #Preview {
+ GameDetailView(game: Jogo(nome: "Balatro", descricao: "Jogo massa", n_estrelas: 5, n_avaliacoes: 1900, data_lancamento: "23/11/2009", capa: UIImage(resource: .sla).pngData()!))
+ }
+/*
+ //#Preview {
+ //    GameDetailView(game: Jogo)
+ //        .modelContainer( // ✅
+ //            for: [Jogo.self, Comentarios.self, CriadoresJogos.self],
+ //            inMemory: true,
+ //            sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
+ //        )
+ //}
+ */

@@ -25,7 +25,7 @@ struct GameListView: View{
                         } label: {
                             GameRowView(game: jogo)
                         }
-                        
+                        .listRowSeparator(.hidden)
                         .padding(8)
                         .background {
                             RoundedRectangle(cornerRadius: 8)
