@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4874126A2FE316D40026C6B5 /* DatabaseMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487412692FE316D40026C6B5 /* DatabaseMonitor.swift */; };
 		54D73C2C2FC8720F00F8864B /* SwiftDataSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 54D73C2B2FC8720F00F8864B /* SwiftDataSQLite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		487412692FE316D40026C6B5 /* DatabaseMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseMonitor.swift; sourceTree = "<group>"; };
 		54D73C102FC868FE00F8864B /* FinalProjectFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProjectFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,6 +54,7 @@
 			children = (
 				54D73C122FC868FE00F8864B /* FinalProjectFoundation */,
 				54D73C112FC868FE00F8864B /* Products */,
+				487412692FE316D40026C6B5 /* DatabaseMonitor.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4874126A2FE316D40026C6B5 /* DatabaseMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
