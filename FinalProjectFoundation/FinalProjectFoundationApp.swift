@@ -19,6 +19,7 @@ struct FinalProjectFoundationApp: App {
                     inMemory: true,
                     sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
                 )
+                .preferredColorScheme(.dark)
         }
         // Este modificador configura o SwiftData para o seu aplicativo.
         // Ele informa ao sistema que você deseja gerenciar os modelos Game e SubGenre.

@@ -19,9 +19,9 @@ struct SubgenreView: View{
         NavigationStack {
             
             VStack{
-                    
-                }
+                
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .listStyle(.plain)
             .background(LinearGradient(
                 colors: [.roxao, .preto],
@@ -32,6 +32,7 @@ struct SubgenreView: View{
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
+}
 
 
 #Preview {

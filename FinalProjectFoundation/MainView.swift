@@ -29,11 +29,11 @@ struct MainView: View {
 
             NavigationStack {
                 SubgenreView()
-                .background(LinearGradient(
-                    colors: [.roxao, .preto],
-                    startPoint: .top,
-                    endPoint: .bottom)
-                )
+//                .background(LinearGradient(
+//                    colors: [.roxao, .preto],
+//                    startPoint: .top,
+//                    endPoint: .bottom)
+//                )
             }
             .tabItem {
                 Label("Subgêneros", systemImage: "gamecontroller.fill")
