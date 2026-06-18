@@ -20,6 +20,8 @@ class Jogo {
     var capa: Data
     var subgen: String?
     
+    @Relationship var subgens: [Subgenero] = []
+    
     // Relacionamento um-para-muitos com Comentarios
     @Relationship var comentarios: [Comentarios] = []
     
@@ -32,7 +34,6 @@ class Jogo {
         criadores: [String],
         data_lancamento: String,
         capa: Data,
-        subgen: String? = nil
     ) {
         self.id = id
         self.nome = nome
@@ -42,7 +43,6 @@ class Jogo {
         self.criadores = criadores
         self.data_lancamento = data_lancamento
         self.capa = capa
-        self.subgen = subgen
     }
 }
 
@@ -68,3 +68,48 @@ class Comentarios {
         self.jogo = jogo
     }
 }
+
+@SQLiteTable("Subgenero")
+@Model
+class Subgenero {
+    
+    @SQLiteColumn("ID_subgen")
+    var id: Int
+    var nome: String
+    var nome_completo: String?
+    
+    // Relacionamento inverso com Jogo (id_jogo)
+    @SQLiteJoinTable("Subgenero_Jogos", left: "ID_subgen", right: "ID_jogo")
+    @Relationship(inverse: \Jogo.subgens) var listaSubgen: [Jogo] = []
+    
+    init(id: Int, nome: String, nome_completo: String?) {
+        self.id = id
+        self.nome = nome
+        self.nome_completo = nome_completo
+    }
+}
+
+
+/*
+
+@SQLiteTable("Subgenero_Jogos")
+@Model
+class SubgeneroJogos {
+    
+    @SQLiteColumn("ID_subgen")
+    var id_subgen: Int
+    @SQLiteColumn("ID_jogo")
+    var id_jogo: Int
+    
+    
+    // Relacionamento inverso com Jogo (id_jogo)
+    @SQLiteJoinTable("Subgenero_Jogos", left: "ID_subgen", right: "actor_id")
+    @Relationship(inverse: \Jogo.subgens) var listaSubgen: [Jogo]
+    
+    init(id: String = UUID().uuidString, nome: String, nome_completo: String) {
+        self.id = id
+        self.nome = nome
+        self.nome_completo = nome_completo
+    }
+    
+*/

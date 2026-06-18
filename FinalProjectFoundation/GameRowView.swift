@@ -52,7 +52,10 @@ struct GameRowView: View {
                 VStack{
                     Text("( " + String(game.n_avaliacoes) + " Avaliações )").frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
-                    let subgeneros = (game.subgen ?? "").components(separatedBy: ",")
+                    
+                    let subgeneros: [String] = game.subgens.map { subgenero in
+                        subgenero.nome
+                    }
                     HStack {
                         ForEach(subgeneros, id: \.self) { subgenero in
                             Button(action:{print("Botao clicado")}){

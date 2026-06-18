@@ -12,7 +12,7 @@ import SwiftDataSQLite
 
 struct SubgenreView2: View{
     
-    @Query(sort: \Jogo.id) var games: [Jogo]
+    var subgen: Subgenero
     
     var body: some View{
         
@@ -24,7 +24,7 @@ struct SubgenreView2: View{
                     RoundedRectangle(cornerRadius: 20)
                         .fill(Color.subgenero)
                         .frame(maxWidth: .infinity, maxHeight: 140)
-                    Text("Subgênero")
+                    Text(subgen.nome)
                         .padding(.top, 50)
                         .font(.system(size: 35))
                         .fontWeight(.bold)
@@ -33,7 +33,7 @@ struct SubgenreView2: View{
                 Spacer()
                 
                 List{
-                    ForEach(games){ jogo in
+                    ForEach(subgen.listaSubgen){ jogo in
                         NavigationLink{GameDetailView(game: jogo) } label: {
                             GameRowView(game: jogo)
                         }
@@ -62,9 +62,9 @@ struct SubgenreView2: View{
 }
 
 #Preview {
-    SubgenreView2()
+    SubgenreView2(subgen: Subgenero(id: 1, nome: "RPG", nome_completo: "Role-Playing Game"))
         .modelContainer( // ✅
-            for: [Jogo.self, Comentarios.self],
+            for: [Jogo.self, Comentarios.self, Subgenero.self],
             inMemory: true,
             sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
         )
