@@ -15,45 +15,30 @@ struct MainView: View {
             // Aba Explorar
             NavigationStack{
                 GameListView()
-                .background(LinearGradient(
-                    colors: [.roxao, .preto],
-                    startPoint: .top,
-                    endPoint: .bottom)
-                )
+                    .background(LinearGradient(
+                        colors: [.roxao, .preto],
+                        startPoint: .top,
+                        endPoint: .bottom)
+                    )
             }
             .tabItem {
                 Label("Explorar", systemImage: "star.fill")
             }
             
             // MARK: - Aba Subgêneros
-
+            
             NavigationStack {
                 SubgenreView()
-//                .background(LinearGradient(
-//                    colors: [.roxao, .preto],
-//                    startPoint: .top,
-//                    endPoint: .bottom)
-//                )
+                //                .background(LinearGradient(
+                //                    colors: [.roxao, .preto],
+                //                    startPoint: .top,
+                //                    endPoint: .bottom)
+                //                )
             }
             .tabItem {
                 Label("Subgêneros", systemImage: "gamecontroller.fill")
             }
-            
-            // MARK: - Aba Pesquisa
-
-            NavigationStack {
-                SearchView()
-                .background(LinearGradient(
-                    colors: [.roxao, .preto],
-                    startPoint: .top,
-                    endPoint: .bottom)
-                )
-            }
-            .tabItem {
-                Label("Pesquisa", systemImage: "magnifyingglass")
-            }
         }
-        
         .tint(.purple) // Define a cor do ícone e texto da aba selecionada
     }
 }

@@ -23,9 +23,9 @@ struct SubgenreView2: View{
                     
                     RoundedRectangle(cornerRadius: 20)
                         .fill(Color.subgenero)
-                        .frame(maxWidth: .infinity, maxHeight: 140)
+                        .frame(maxWidth: .infinity, maxHeight: 150)
                     Text(subgen.nome)
-                        .padding(.top, 50)
+                        .padding(.top, 60)
                         .font(.system(size: 35))
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -33,7 +33,7 @@ struct SubgenreView2: View{
                 Spacer()
                 
                 List{
-                    ForEach(subgen.listaSubgen){ jogo in
+                    ForEach(subgen.listaSubgen.sorted(by: { $0.id < $1.id })){ jogo in
                         NavigationLink{GameDetailView(game: jogo) } label: {
                             GameRowView(game: jogo)
                         }

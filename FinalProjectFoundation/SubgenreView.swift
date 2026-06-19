@@ -20,34 +20,42 @@ struct SubgenreView: View{
         
         NavigationStack {
             ScrollView(showsIndicators: true) {
-                LazyVStack(alignment: .leading, spacing: 12) {
+                LazyVStack(alignment: .leading, spacing: 20) {
                     
                     ForEach(subgeneros, id: \.self) { sub in
                         NavigationLink {
                             SubgenreView2(subgen: sub)
                         } label: {
                             ZStack(alignment: .leading) {
+                                
                                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                                     .fill(Color.white.opacity(0.08))
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 16, style: .continuous)
                                             .stroke(Color.white.opacity(0.15), lineWidth: 1)
                                     )
-                                Image(systemName: "chevron.right")
-                                    .font(.footnote)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white.opacity(0.4))
-                                Spacer()
-                                Text(sub.nome)
-                                    .font(.headline)
-                                    .foregroundStyle(.white)
-                                    .padding(16)
+                                    
+                                HStack {
+                                    Text(sub.nome + (sub.nome_completo.map { " ( \($0) )" } ?? ""))
+                                    //.font(.headline)
+                                        .font(.system(size: 21))
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.white)
+                                        .padding(20)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.footnote)
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.white.opacity(0.4))
+                                        .padding()
+                                }
                             
                             }
                             .frame(maxWidth: .infinity, minHeight: 64)
                         }
                     }
                 }
+                .padding(.top, 30)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
             }
@@ -56,7 +64,7 @@ struct SubgenreView: View{
                 colors: [.roxao, .preto],
                 startPoint: .top,
                 endPoint: .bottom))
-            .navigationTitle("Subgênero")
+            .navigationTitle("Subgêneros")
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }

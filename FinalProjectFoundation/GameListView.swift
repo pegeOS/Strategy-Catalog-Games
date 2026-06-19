@@ -33,7 +33,6 @@ struct GameListView: View{
                     .listRowBackground(EmptyView())
                 }
                 .listRowSpacing(-10)
-                .padding(1)
                 .listStyle(.plain)
                 .navigationTitle("Explorar")
             }
