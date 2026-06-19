@@ -20,7 +20,10 @@ struct GameListView: View{
                 
                 List{
                     ForEach(games){ jogo in
-                        NavigationLink{GameDetailView(game: jogo) } label: {
+                        NavigationLink {
+                            // Agora passamos apenas o ID do jogo para a tela de detalhe baseada em JOIN
+                            GameDetailView(game: jogo)
+                        } label: {
                             GameRowView(game: jogo)
                         }
                         .listRowSeparator(.hidden)

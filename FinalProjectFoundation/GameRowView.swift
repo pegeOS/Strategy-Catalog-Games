@@ -18,7 +18,7 @@ struct GameRowView: View {
         HStack(alignment: .center){
             GameCoverView(cover: game.capa)
                 .frame(width: 100, height: 100)
-            //nome
+            Spacer()
             VStack(alignment: .leading, spacing: 0){
                 
                 Text(game.nome)

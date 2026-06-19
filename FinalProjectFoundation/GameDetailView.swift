@@ -4,6 +4,12 @@
 //
 //  Created by Found on 09/06/26.
 //
+//
+//  GameDetailView.swift
+//  FinalProjectFoundation
+//
+//  Created by Found on 09/06/26.
+//
 
 
 import SwiftUI
@@ -48,7 +54,9 @@ struct GameDetailView: View {
                                     .foregroundColor(.white)
                                     .bold()
                                 
-                                Text("Gênero: \(game.subgen)")
+                                let subgeneros = game.subgens.map(\.nome)
+                                
+                                Text("Gênero: \(subgeneros.formatted())")
                                     .font(.system(size: 16, design: .rounded))
                                     .foregroundColor(.white)
                                     .bold()
