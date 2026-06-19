@@ -40,6 +40,7 @@ struct MainView: View {
             }
         }
         .tint(.purple) // Define a cor do ícone e texto da aba selecionada
+        .preferredColorScheme(.dark)
     }
 }
 
